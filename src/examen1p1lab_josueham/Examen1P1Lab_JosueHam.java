@@ -10,7 +10,7 @@ public class Examen1P1Lab_JosueHam {
     
     public static void main(String[] args) {
        
-       int opcion;
+       int opcion = 0;
        do{
            System.out.println("");
            System.out.println("----- Bienvenido al menu del programa -----");
@@ -53,8 +53,7 @@ public class Examen1P1Lab_JosueHam {
                case 3:{
                    System.out.println("Ingrese su cadena: ");
                    leer.nextLine();
-                   String cadena = leer.next().toLowerCase();
-                   vecinos (cadena);
+                   String cadena = leer.next();
                    System.out.println(vecinos(cadena));
                }//Fin case 3
                break;
@@ -71,18 +70,31 @@ public class Examen1P1Lab_JosueHam {
        String no_primos ="";
        String primos = "";
         for (int i = 1; i < num; i++) {
-            if (num % i != 0) {
-                no_primos+= (Integer.toString(i)+ " ");
-            }//Fin if 
-            else if (num % i == 0){
+           
+            if(num % i == 0 && es_primo(i)){
                 primos+= (Integer.toString(i)+ " ");
-            }//Fin else if
+            }//Fin if 
         }//Fin for i
-        
-        System.out.println("Los divisores no primos de " + num + " son: " + no_primos);
+
         return primos;
     }//Fin metodo ejercicio 1
     
+    public static boolean es_primo (int num){
+        
+        int cont = 0;
+        boolean primo = false;
+        for (int i = 1; i <= num; i++) {
+            if (num % i == 0) {
+                cont++;
+            }
+        }//Fin for i
+        
+        if (cont <= 2 ) {
+            primo = true;
+        }
+         return primo;
+       
+    }//Fin metodo es primo
     public static void contorno(int tam){
         
         int mitad = tam/2;
@@ -108,9 +120,10 @@ public class Examen1P1Lab_JosueHam {
         String res = "";
         
         int num = aleatorio.nextInt(2);
+        System.out.println("El numero generado es: " + num);
         for (int i = 0; i < cadena.length(); i++) {
             char letra = cadena.charAt(i);
-            if (((int) letra >= 97 && (int) letra <= 122) || ((int)letra >= 48 && (int)letra <=57)) {
+            if (((int) letra >= 97 && (int) letra <= 122) ||((int)letra >= 65 && (int)letra <= 90) || ((int)letra >= 48 && (int)letra <=57)) {
                 if(num == 1){
                    letra++;
                    res+= (char)letra;
@@ -123,7 +136,8 @@ public class Examen1P1Lab_JosueHam {
                 System.out.println("Solo se permiten cadenas de numeros y letras");
             }//Fin else
         }//Fin for i
-        System.out.println("El numero generado es: " + num);
+        
+        
         return res;
     }//Fin metodo ejercicio 3
 }//Fin de la clase
