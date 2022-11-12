@@ -29,7 +29,7 @@ public class Examen1P1Lab_JosueHam {
                    
                    if (num >= 1){
                    primos(num);
-                   System.out.println("Los numeros primos de " + num + " son:  " + primos(num));
+                   System.out.println("Los numeros divisores primos de " + num + " son:  " + primos(num));
                    }
                    else{
                        System.out.println("El numero ingresado debe ser mayor o igual a 1");
@@ -68,30 +68,34 @@ public class Examen1P1Lab_JosueHam {
     
     public static String primos (int num){
         
-        
+       String no_primos ="";
        String primos = "";
-        boolean primo = true;
         for (int i = 1; i < num; i++) {
-            if (num % i == 0) {
-            primos+= Integer.parseInt(primos + "" );
-            }
+            if (num % i != 0) {
+                no_primos+= (Integer.toString(i)+ " ");
+            }//Fin if 
+            else if (num % i == 0){
+                primos+= (Integer.toString(i)+ " ");
+            }//Fin else if
         }//Fin for i
         
+        System.out.println("Los divisores no primos de " + num + " son: " + no_primos);
         return primos;
     }//Fin metodo ejercicio 1
     
     public static void contorno(int tam){
         
+        int mitad = tam/2;
         for (int i = 0; i < tam; i++) {
             for (int j = 0; j < tam; j++) {
-                if (i + j == tam - 2 || i == tam - 2  || (j == (tam/2) + 1 + i)) {
+                if (((j == mitad+i || j == mitad-i) && i < mitad) || i == mitad-1 && j != 0 && j != tam-1){
                     System.out.print("+");
                 }
-                else if ((i == 0) || (i == tam -1)){
-                    System.out.print("*");
+                else if (j > mitad-i && j < mitad+i && i != mitad){
+                    System.out.print(" ");
                 }//Fin else if 
                 else {
-                    System.out.print(" ");
+                    System.out.print("*");
                 }
             }
             System.out.println("");
